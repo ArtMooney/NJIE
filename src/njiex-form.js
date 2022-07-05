@@ -112,6 +112,7 @@ function allowDrop(ev) {
 
 function performanceDrag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.dropEffect = "move";
 }
 
 function performanceDrop(ev) {
