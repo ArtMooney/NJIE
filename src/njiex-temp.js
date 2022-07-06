@@ -119,6 +119,8 @@ function preventScroll(e) {
   return false;
 }
 
+//
+
 function disableScroll() {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
