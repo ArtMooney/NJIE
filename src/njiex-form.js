@@ -112,7 +112,6 @@ function allowDrop(ev) {
 
 function performanceDrag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
-  // ev.dataTransfer.dropEffect = "move";
 }
 
 function performanceDrop(ev) {
@@ -133,85 +132,6 @@ function performanceDrop(ev) {
   dropTarget.appendChild(saveSourceElement);
   newSourceTarget.appendChild(saveTargetElement);
 }
-
-// .order-input-wrapper.xdfgfh {
-//   border-top-style: dotted;
-//   border-top-width: 4px;
-//   border-top-color: hsla(0, 0.00%, 100.00%, 1.00);
-//   border-right-style: dotted;
-//   border-right-width: 4px;
-//   border-right-color: hsla(0, 0.00%, 100.00%, 1.00);
-//   border-bottom-style: dotted;
-//   border-bottom-width: 4px;
-//   border-bottom-color: hsla(0, 0.00%, 100.00%, 1.00);
-//   border-left-style: dotted;
-//   border-left-width: 4px;
-//   border-left-color: hsla(0, 0.00%, 100.00%, 1.00);
-// }
-
-document.addEventListener("DOMContentLoaded", (event) => {
-  var dragSrcEl = null;
-
-  function handleDragStart(e) {
-    this.style.opacity = "0.4";
-
-    dragSrcEl = this;
-
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", this.innerHTML);
-  }
-
-  function handleDragOver(e) {
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
-
-    e.dataTransfer.dropEffect = "move";
-
-    return false;
-  }
-
-  function handleDragEnter(e) {
-    this.classList.add("over");
-  }
-
-  function handleDragLeave(e) {
-    this.classList.remove("over");
-  }
-
-  function handleDrop(e) {
-    if (e.stopPropagation) {
-      e.stopPropagation(); // stops the browser from redirecting.
-    }
-
-    if (dragSrcEl != this) {
-      dragSrcEl.innerHTML = this.innerHTML;
-      this.innerHTML = e.dataTransfer.getData("text/html");
-    }
-
-    return false;
-  }
-
-  function handleDragEnd(e) {
-    this.style.opacity = "1";
-
-    items.forEach(function (item) {
-      item.classList.remove("over");
-    });
-  }
-
-  let items = document.querySelectorAll(".container .box");
-  items.forEach(function (item) {
-    item.addEventListener("dragstart", handleDragStart, false);
-    item.addEventListener("dragenter", handleDragEnter, false);
-    item.addEventListener("dragover", handleDragOver, false);
-    item.addEventListener("dragleave", handleDragLeave, false);
-    item.addEventListener("drop", handleDrop, false);
-    item.addEventListener("dragend", handleDragEnd, false);
-  });
-});
-
-//-------
 
 function performanceEnter(ev) {
   ev.target.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
