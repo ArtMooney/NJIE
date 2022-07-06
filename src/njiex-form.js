@@ -106,67 +106,70 @@ document
     }
   });
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+dragula([document.getElementById("gnu1")]);
 
-function performanceDrag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+// function allowDrop(ev) {
+//   ev.preventDefault();
+// }
 
-function performanceDrop(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
+// function performanceDrag(ev) {
+//   ev.dataTransfer.setData("text", ev.target.id);
+//   // ev.dataTransfer.dropEffect = "move";
+// }
 
-  const sourceTarget = document.getElementById(data);
-  ev.target.style.backgroundColor = "rgba(255, 255, 255, 0)";
-  const dropTarget = ev.target.parentElement;
+// function performanceDrop(ev) {
+//   ev.preventDefault();
+//   const data = ev.dataTransfer.getData("text");
 
-  const saveSourceElement = sourceTarget.cloneNode(true);
-  const saveTargetElement = ev.target.cloneNode(true);
+//   const sourceTarget = document.getElementById(data);
+//   ev.target.style.backgroundColor = "rgba(255, 255, 255, 0)";
+//   const dropTarget = ev.target.parentElement;
 
-  ev.target.remove();
-  const newSourceTarget = sourceTarget.parentElement;
-  sourceTarget.remove();
+//   const saveSourceElement = sourceTarget.cloneNode(true);
+//   const saveTargetElement = ev.target.cloneNode(true);
 
-  dropTarget.appendChild(saveSourceElement);
-  newSourceTarget.appendChild(saveTargetElement);
-}
+//   ev.target.remove();
+//   const newSourceTarget = sourceTarget.parentElement;
+//   sourceTarget.remove();
 
-function performanceEnter(ev) {
-  ev.target.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
-}
+//   dropTarget.appendChild(saveSourceElement);
+//   newSourceTarget.appendChild(saveTargetElement);
+// }
 
-function performanceLeave(ev) {
-  ev.target.style.backgroundColor = "rgba(255, 255, 255, 0)";
-}
+// function performanceEnter(ev) {
+//   ev.target.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
+// }
 
-function setAttributes(element, attributes) {
-  Object.keys(attributes).forEach((attr) => {
-    element.setAttribute(attr, attributes[attr]);
-  });
-}
+// function performanceLeave(ev) {
+//   ev.target.style.backgroundColor = "rgba(255, 255, 255, 0)";
+// }
 
-const attrPerformanceDrop = {
-  ondrop: "performanceDrop(event)",
-  ondragenter: "performanceEnter(event)",
-  ondragleave: "performanceLeave(event)",
-  ondragover: "allowDrop(event)"
-};
+// function setAttributes(element, attributes) {
+//   Object.keys(attributes).forEach((attr) => {
+//     element.setAttribute(attr, attributes[attr]);
+//   });
+// }
 
-const perfomanceList = document.querySelector("[dynamic-list-performance]");
-for (const item of perfomanceList.querySelectorAll(".order-input-wrapper")) {
-  setAttributes(item, attrPerformanceDrop);
-}
+// const attrPerformanceDrop = {
+//   ondrop: "performanceDrop(event)",
+//   ondragenter: "performanceEnter(event)",
+//   ondragleave: "performanceLeave(event)",
+//   ondragover: "allowDrop(event)",
+// };
 
-const attrPerformanceDrag = {
-  draggable: "true",
-  ondragstart: "performanceDrag(event)"
-};
+// const perfomanceList = document.querySelector("[dynamic-list-performance]");
+// for (const item of perfomanceList.querySelectorAll(".order-input-wrapper")) {
+//   setAttributes(item, attrPerformanceDrop);
+// }
 
-for (const item of perfomanceList.querySelectorAll(".order-input-wrapper")) {
-  setAttributes(item, attrPerformanceDrag);
-}
+// const attrPerformanceDrag = {
+//   draggable: "true",
+//   ondragstart: "performanceDrag(event)",
+// };
+
+// for (const item of perfomanceList.querySelectorAll(".order-input-wrapper")) {
+//   setAttributes(item, attrPerformanceDrag);
+// }
 
 const summeringList = document.querySelector("[dynamic-list-summering]");
 
