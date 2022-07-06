@@ -108,32 +108,6 @@ document
 
 dragula([document.getElementById("dragndrop")]);
 
-document
-  .getElementById("dragndrop")
-  .addEventListener("mousedown", preventScroll);
-
-function preventScroll(e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  return false;
-}
-
-//
-
-function disableScroll() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-  window.onscroll = function () {
-    window.scrollTo(scrollLeft, scrollTop);
-  };
-}
-
-function enableScroll() {
-  window.onscroll = function () {};
-}
-
 const summeringList = document.querySelector("[dynamic-list-summering]");
 
 function summering() {
