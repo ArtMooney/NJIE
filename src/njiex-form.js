@@ -106,7 +106,7 @@ document
     }
   });
 
-dragula([document.getElementById("gnu1")]);
+dragula([document.getElementById("dragndrop")]);
 
 const summeringList = document.querySelector("[dynamic-list-summering]");
 
