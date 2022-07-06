@@ -411,4 +411,8 @@ function toAppContent9() {
       { once: true }
     );
   }
+
+  $(window).bind("touchmove", function (e) {
+    e.preventDefault();
+  });
 }
