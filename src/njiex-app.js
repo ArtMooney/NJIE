@@ -108,7 +108,16 @@ document
 
 dragula([document.getElementById("dragndrop")]);
 
-document.getElementById("dragndrop").addEventListener("click", disableScroll);
+document
+  .getElementById("dragndrop")
+  .addEventListener("mousedown", preventScroll);
+
+function preventScroll(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  return false;
+}
 
 function disableScroll() {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
