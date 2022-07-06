@@ -108,6 +108,8 @@ document
 
 dragula([document.getElementById("gnu1")]);
 
+//
+
 // function allowDrop(ev) {
 //   ev.preventDefault();
 // }
