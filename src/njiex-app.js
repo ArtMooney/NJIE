@@ -13,6 +13,7 @@ function addDynamicWorkout() {
   // Start delete-eventlistener
   const newWorkout = document.querySelectorAll("[deleteworkout]");
   newWorkout[newWorkout.length - 1].addEventListener("click", function (event) {
+    clearAllWarnings();
     event.target.parentElement.remove();
   });
 }
@@ -32,6 +33,7 @@ function addDynamicAllergie() {
   // Start delete-eventlistener
   const newWorkout = document.querySelectorAll("[deleteallergie]");
   newWorkout[newWorkout.length - 1].addEventListener("click", function (event) {
+    clearAllWarnings();
     event.target.parentElement.remove();
   });
 }
@@ -51,6 +53,7 @@ function addDynamicBrand() {
   // Start delete-eventlistener
   const newWorkout = document.querySelectorAll("[deletebrand]");
   newWorkout[newWorkout.length - 1].addEventListener("click", function (event) {
+    clearAllWarnings();
     event.target.parentElement.remove();
   });
 }
@@ -423,5 +426,12 @@ function toAppContent9() {
       },
       { once: true }
     );
+  }
+}
+
+function clearAllWarnings() {
+  const errorMessages = document.querySelectorAll(".missing-input-error");
+  for (const error of errorMessages) {
+    error.style.display = "none";
   }
 }
