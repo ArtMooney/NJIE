@@ -109,10 +109,10 @@ document
 dragula([document.getElementById("dragndrop")]);
 
 const summeringList = document.querySelector("[dynamic-list-summering]");
-
 function summering() {
   const allInputs = document.querySelectorAll("input");
   let name;
+  let email;
   let age;
   let nrWorkouts;
   let workouts = [];
@@ -130,8 +130,11 @@ function summering() {
   for (const input of allInputs) {
     // collect text inputs
     if (input.type === "text") {
-      if (input.name === "name" && input.value !== "") {
+      if (input.name === "firstname" && input.value !== "") {
         name = input.value;
+      }
+      if (input.name === "lastname" && input.value !== "") {
+        name = name + " " + input.value;
       }
       if (input.name === "type-of-workout" && input.value !== "") {
         workouts.push(input.value);
@@ -149,6 +152,13 @@ function summering() {
       }
       if (input.name === "brands" && input.value !== "") {
         brands.push(input.value);
+      }
+    }
+
+    // collect email inputs
+    if (input.type === "email") {
+      if (input.name === "email" && input.value !== "") {
+        email = input.value;
       }
     }
 
@@ -172,6 +182,7 @@ function summering() {
   // write values to summary form
   for (const input of summeringList.querySelectorAll("input")) {
     if (input.name === "summering-name") input.value = name;
+    if (input.name === "summering-email") input.value = email;
     if (input.name === "summering-age") input.value = age;
     if (input.name === "summering-nr-workouts") input.value = nrWorkouts;
     if (input.name === "summering-workouts") {
@@ -218,33 +229,34 @@ function summering() {
 }
 
 function toAppContent3() {
-  const allInputs = document.querySelectorAll("input");
+  const inputs = document
+    .querySelector("[nameemail]")
+    .querySelectorAll("input");
   const errorMessages = document.querySelectorAll(".missing-input-error");
 
-  for (const input of allInputs) {
-    if (input.type === "text") {
-      if (input.name === "name") {
-        if (input.value !== "") {
-          document.getElementById("toAppContent3").click();
-        } else {
-          for (const error of errorMessages) {
-            error.style.display = "block";
-          }
+  let allFilled = true;
+  for (const input of inputs) {
+    if (input.value === "") {
+      allFilled = false;
 
-          // wait for user input
-          input.addEventListener(
-            "input",
-            function () {
-              for (const error of errorMessages) {
-                error.style.display = "none";
-              }
-            },
-            { once: true }
-          );
-        }
+      for (const error of errorMessages) {
+        error.style.display = "block";
       }
+
+      // wait for user input
+      input.addEventListener(
+        "input",
+        function () {
+          for (const error of errorMessages) {
+            error.style.display = "none";
+          }
+        },
+        { once: true }
+      );
     }
   }
+
+  if (allFilled) document.getElementById("toAppContent3").click();
 }
 
 function toAppContent4() {
@@ -316,33 +328,34 @@ function toAppContent5() {
 }
 
 function toAppContent6() {
-  const allInputs = document.querySelectorAll("input");
+  const inputs = document
+    .querySelector("[dynamic-list-workouts]")
+    .querySelectorAll("input");
   const errorMessages = document.querySelectorAll(".missing-input-error");
 
-  for (const input of allInputs) {
-    if (input.type === "text") {
-      if (input.name === "type-of-workout") {
-        if (input.value !== "") {
-          document.getElementById("toAppContent6").click();
-        } else {
-          for (const error of errorMessages) {
-            error.style.display = "block";
-          }
+  let allFilled = true;
+  for (const input of inputs) {
+    if (input.value === "") {
+      allFilled = false;
 
-          // wait for user input
-          input.addEventListener(
-            "input",
-            function () {
-              for (const error of errorMessages) {
-                error.style.display = "none";
-              }
-            },
-            { once: true }
-          );
-        }
+      for (const error of errorMessages) {
+        error.style.display = "block";
       }
+
+      // wait for user input
+      input.addEventListener(
+        "input",
+        function () {
+          for (const error of errorMessages) {
+            error.style.display = "none";
+          }
+        },
+        { once: true }
+      );
     }
   }
+
+  if (allFilled) document.getElementById("toAppContent6").click();
 }
 
 function toAppContent8() {
