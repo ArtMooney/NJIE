@@ -435,3 +435,22 @@ function clearAllWarnings() {
     error.style.display = "none";
   }
 }
+
+function sendData() {
+  const inputs = document.querySelectorAll("input");
+  let firstname;
+  let lastname;
+
+  for (const input of inputs) {
+    if (input.name === "firstname") firstname = input.value;
+    if (input.name === "lastname") lastname = input.value;
+  }
+
+  document.getElementById("send-button").innerHTML = "Vänta...";
+  document.getElementById("success-name").innerHTML =
+    firstname + " " + lastname + "!";
+
+  setTimeout(() => {
+    document.getElementById("send-form").click();
+  }, 1000);
+}
