@@ -12,6 +12,8 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
   // test domain url's first and then country code
   if (url === "it") {
     window.location.href = "/it/startpage";
+  } else if (url === "se") {
+    window.location.href = "/se/startpage";
   } else if (url === "no") {
     window.location.href = "/en/startpage";
   } else if (url === "dk") {
