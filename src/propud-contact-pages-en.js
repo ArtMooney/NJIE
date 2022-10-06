@@ -1,9 +1,12 @@
 // predefined variables
-const selector = document.getElementById("choose-form");
-const konsumentkontakt = document.getElementById("konsumentkontakt-form");
-const ambassador = document.getElementById("ambassador-form");
-const sponsor = document.getElementById("sponsor-form");
-const reklamationer = document.getElementById("reklamationer-form");
+const selectorCountry = document.getElementById("country");
+const selectorInquiry = document.getElementById("inquiry");
+const consumercontact = document.getElementById("consumercontact-form");
+const reclaims = document.getElementById("reclaims-form");
+const contactCountry = document.getElementById("contact-country");
+const contactInquiry = document.getElementById("contact-inquiry");
+const reclaimCountry = document.getElementById("reclaim-country");
+const reclaimInquiry = document.getElementById("reclaim-inquiry");
 
 // functions
 isInputsEmpty = (form) => {
@@ -26,24 +29,34 @@ isInputsEmpty = (form) => {
   return formComplete;
 };
 
+selectForm = () => {
+  if (selectorCountry.value === "" || selectorInquiry.value === "") {
+    reclaims.style.display = "none";
+    consumercontact.style.display = "none";
+  } else if (selectorInquiry.value === "Reclaims") {
+    reclaims.style.display = "grid";
+    consumercontact.style.display = "none";
+  } else {
+    consumercontact.style.display = "grid";
+    reclaims.style.display = "none";
+  }
+};
+
 // event listeners
-document.getElementById("choose-form").addEventListener("change", (event) => {
-  selector.value === "konsumentkontakt"
-    ? (konsumentkontakt.style.display = "grid")
-    : (konsumentkontakt.style.display = "none");
-  selector.value === "ambassadör"
-    ? (ambassador.style.display = "grid")
-    : (ambassador.style.display = "none");
-  selector.value === "sponsring"
-    ? (sponsor.style.display = "grid")
-    : (sponsor.style.display = "none");
-  selector.value === "reklamationer"
-    ? (reklamationer.style.display = "grid")
-    : (reklamationer.style.display = "none");
+selectorCountry.addEventListener("change", (event) => {
+  contactCountry.value = selectorCountry.value;
+  reclaimCountry.value = selectorCountry.value;
+  selectForm();
+});
+
+selectorInquiry.addEventListener("change", (event) => {
+  contactInquiry.value = selectorInquiry.value;
+  reclaimInquiry.value = selectorInquiry.value;
+  selectForm();
 });
 
 document
-  .getElementById("send-reklamationer-button")
+  .getElementById("send-reclaims-button")
   .addEventListener("click", (event) => {
     let formdata = new FormData();
     let formComplete = true;
@@ -56,7 +69,7 @@ document
     });
 
     // append all inputs except button
-    for (const item of reklamationer.querySelectorAll("input")) {
+    for (const item of reclaims.querySelectorAll("input")) {
       if (item.required === true && item.value === "") {
         // if input is required it must not be empty
         formComplete = false;
@@ -74,7 +87,7 @@ document
     }
 
     // append all textareas
-    for (const item of reklamationer.querySelectorAll("textarea")) {
+    for (const item of reclaims.querySelectorAll("textarea")) {
       if (item.required === true && item.value === "") {
         // if input is required it must not be empty
         formComplete = false;
@@ -90,17 +103,17 @@ document
         redirect: "follow",
       };
 
-      fetch("https://api.ngine.se/webhook/propud-reklamationer", requestOptions)
+      fetch("https://api.ngine.se/webhook/propud-reclaims", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          selector.disabled = true;
-          document.getElementById("send-reklamationer-button").value =
-            "Vänta...";
+          selectorCountry.disabled = true;
+          selectorInquiry.disabled = true;
+          document.getElementById("send-reclaims-button").value = "Vänta...";
 
           setTimeout(() => {
             // document.getElementById("thank-you").click(); // redirect
             document.getElementById("success-message").style.display = "block";
-            document.getElementById("reklamationer-form").style.display =
+            document.getElementById("reclaims-form-normal").style.display =
               "none";
           }, 1000);
 
@@ -111,7 +124,7 @@ document
         .catch((error) => {
           console.log("error", error);
           document.getElementById("error-message").style.display = "block";
-          reklamationer.addEventListener(
+          reclaims.addEventListener(
             "click",
             (event) => {
               document.getElementById("error-message").style.display = "none";
@@ -123,32 +136,13 @@ document
   });
 
 document
-  .getElementById("konsumentkontakt-send")
+  .getElementById("consumercontact-send")
   .addEventListener("click", (event) => {
-    if (isInputsEmpty(konsumentkontakt)) {
-      selector.disabled = true;
+    if (isInputsEmpty(consumercontact)) {
+      selectorCountry.disabled = true;
+      selectorInquiry.disabled = true;
       setTimeout(() => {
         location.reload();
       }, 3000);
     }
   });
-
-document
-  .getElementById("ambassador-send")
-  .addEventListener("click", (event) => {
-    if (isInputsEmpty(ambassador)) {
-      selector.disabled = true;
-      setTimeout(() => {
-        location.reload();
-      }, 3000);
-    }
-  });
-
-document.getElementById("sponsor-send").addEventListener("click", (event) => {
-  if (isInputsEmpty(sponsor)) {
-    selector.disabled = true;
-    setTimeout(() => {
-      location.reload();
-    }, 3000);
-  }
-});
