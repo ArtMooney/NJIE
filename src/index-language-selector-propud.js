@@ -13,7 +13,7 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
   if (url === "it") {
     window.location.href = "/it/startpage";
   } else if (url === "se") {
-    window.location.href = "/se/startpage";
+    window.location.href = "/sv/startpage";
   } else if (url === "no") {
     window.location.href = "/en/startpage";
   } else if (url === "dk") {
