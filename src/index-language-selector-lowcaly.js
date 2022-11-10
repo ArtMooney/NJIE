@@ -11,13 +11,13 @@
 
   // test domain url's first and then country code
   if (url === "se") {
-    window.location.href = "/se/startpage";
+    window.location.href = "/sv/startpage";
   } // no domains matched, check for country codes
   else if (data.country_code === "SE") {
     sessionStorage.setItem("chosenlanguage", data.country_code);
     window.location.href = "/sv/startpage";
   } else {
     // go to fallback url if nothing matches
-    window.location.href = "/sv/startpage";
+    window.location.href = "/en/startpage";
   }
 })();
