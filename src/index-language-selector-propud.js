@@ -28,46 +28,48 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
   }
 
   if (inviteExists === false) {
+    const domainUrl = "https://www.propud.com";
+
     // test domain url's first and then country code
     if (url === "it") {
-      window.location.href = "/it/startpage";
+      window.location.href = domainUrl + "/it/startpage";
     } else if (url === "se") {
-      window.location.href = "/sv/startpage";
+      window.location.href = domainUrl + "/sv/startpage";
     } else if (url === "no") {
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (url === "dk") {
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (url === "fi") {
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (url === "es") {
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (url === "is") {
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } // no domains matched, check for country codes
     else if (data.country_code === "SE") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/sv/startpage";
+      window.location.href = domainUrl + "/sv/startpage";
     } else if (data.country_code === "IT") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/it/startpage";
+      window.location.href = domainUrl + "/it/startpage";
     } else if (data.country_code === "FI") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (data.country_code === "NO") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (data.country_code === "DK") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (data.country_code === "ES") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else if (data.country_code === "IS") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     } else {
       // go to fallback url if nothing matches
-      window.location.href = "/en/startpage";
+      window.location.href = domainUrl + "/en/startpage";
     }
   }
 })();
