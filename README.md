@@ -1,2 +1,3 @@
 # NJIE
-Created with CodeSandbox
+
+Mixed scripts for NJIE's websites
