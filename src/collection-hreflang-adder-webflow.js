@@ -1,11 +1,13 @@
 const inputValue =
-  "sv: milkshakes-sv/strawberry-ms330, en: strawberry, it: strawberry";
+  "sv: coffee-shakes-sv/coffee-shake-frappe-latte, en: coffee-shake-frappe-latte, it: coffee-shake-frappe-latte";
 
 if (inputValue) {
   let langVersions = [];
   const urlParts = window.location.href.split("/").slice(2);
-  const slug = urlParts.pop();
-  const collectionSlug = urlParts.pop().split("-")[0] + "-";
+  let removePart = urlParts.pop();
+  let collectionSlug = urlParts.pop().split("-");
+  removePart = collectionSlug.pop().split("-").pop();
+  collectionSlug = collectionSlug.join("-") + "-";
   const dynamicHref = "https://" + urlParts[0] + "/" + collectionSlug;
   const canonicalHref = "https://" + urlParts[0] + "/";
 
