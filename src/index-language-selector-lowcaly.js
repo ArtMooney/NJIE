@@ -5,10 +5,6 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
     "https://api.ipdata.co/?api-key=a9301d2e756fd26a8a81a0f3041a5863feaa213787072c5366a25140"
   );
 
-  if (res.status !== 200) {
-    console.log("error");
-    window.location.href = "/en/startpage";
-  }
   const data = await res.json();
 
   const url = window.location.hostname.split(".").pop().toLowerCase();
@@ -29,15 +25,12 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
 
   if (inviteExists === false) {
     // test domain url's first and then country code
-    if (url === "se") {
-      window.location.href = "/sv/startpage";
+    if (url === "en") {
+      window.location.href = "/en";
     } // no domains matched, check for country codes
-    else if (data.country_code === "SE") {
+    else if (data.country_code === "EN") {
       sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/sv/startpage";
-    } else {
-      // go to fallback url if nothing matches
-      window.location.href = "/en/startpage";
+      window.location.href = "/en";
     }
   }
 })();
