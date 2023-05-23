@@ -33,4 +33,9 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
       window.location.href = "/en";
     }
   }
+
+  // wait until code has chosen path until showing DOM
+  window.addEventListener("load", () => {
+    document.getElementsByClassName("wait-for-load")[0].style.display = "block";
+  });
 })();
