@@ -1,15 +1,14 @@
-const chosenlanguage = sessionStorage.getItem("chosenlanguage");
-
 (async function pullGeo() {
   const domainUrl = "https://www.propud.com";
+  const chosenlanguage = sessionStorage.getItem("chosenlanguage");
+
+  console.log("CHOSELANGUAGE", chosenlanguage);
 
   const res = await fetch(
     "https://api.ipdata.co/?api-key=a9301d2e756fd26a8a81a0f3041a5863feaa213787072c5366a25140"
   );
 
   const data = await res.json();
-
-  const url = window.location.hostname.split(".").pop().toLowerCase();
   const inviteUrl = window.location.href.split("?")[1];
   let inviteExists = false;
 
@@ -26,17 +25,15 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
   }
 
   if (inviteExists === false) {
-    // test domain url's first and then country code
-    if (url === "it") {
-      window.location.href = domainUrl + "/it";
-    } else if (url === "se") {
+    if (chosenlanguage === "SE") {
       window.location.href = domainUrl + "/sv";
-    } // no domains matched, check for country codes
-    else if (data.country_code === "SE") {
-      sessionStorage.setItem("chosenlanguage", data.country_code);
+    } else if (chosenlanguage === "IT") {
+      window.location.href = domainUrl + "/it";
+    } else if (chosenlanguage === "EN") {
+      // stays on page
+    } else if (data.country_code === "SE") {
       window.location.href = domainUrl + "/sv";
     } else if (data.country_code === "IT") {
-      sessionStorage.setItem("chosenlanguage", data.country_code);
       window.location.href = domainUrl + "/it";
     }
   }
