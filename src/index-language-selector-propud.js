@@ -2,8 +2,6 @@
   const domainUrl = "https://www.propud.com";
   const chosenlanguage = sessionStorage.getItem("chosenlanguage");
 
-  console.log("CHOSELANGUAGE", chosenlanguage);
-
   const res = await fetch(
     "https://api.ipdata.co/?api-key=a9301d2e756fd26a8a81a0f3041a5863feaa213787072c5366a25140"
   );
