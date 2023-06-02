@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+<script>
+  window.addEventListener("load", () => {
+    const players = Array.from(document.querySelectorAll(".js-player")).map(
+      (player, index) => {
+        new Plyr(player);
+
+        if (player.getAttribute("autoplay") !== null) {
+          player.muted = true;
+          player.play();
+        }
+      }
+    );
+  });
+</script>
