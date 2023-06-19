@@ -1,13 +1,12 @@
-const chosenlanguage = sessionStorage.getItem("chosenlanguage");
-
 (async function pullGeo() {
+  const domainUrl = "https://lowcaly.se";
+  const chosenlanguage = sessionStorage.getItem("chosenlanguage");
+
   const res = await fetch(
     "https://api.ipdata.co/?api-key=a9301d2e756fd26a8a81a0f3041a5863feaa213787072c5366a25140"
   );
 
   const data = await res.json();
-
-  const url = window.location.hostname.split(".").pop().toLowerCase();
   const inviteUrl = window.location.href.split("?")[1];
   let inviteExists = false;
 
@@ -24,13 +23,12 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
   }
 
   if (inviteExists === false) {
-    // test domain url's first and then country code
-    if (url === "en") {
-      window.location.href = "/en";
-    } // no domains matched, check for country codes
-    else if (data.country_code === "EN") {
-      sessionStorage.setItem("chosenlanguage", data.country_code);
-      window.location.href = "/en";
+    if (chosenlanguage === "SE") {
+      // stays on page
+    } else if (chosenlanguage === "EN") {
+      window.location.href = domainUrl + "/en";
+    } else if (data.country_code !== "SE") {
+      window.location.href = domainUrl + "/en";
     }
   }
 
@@ -39,3 +37,7 @@ const chosenlanguage = sessionStorage.getItem("chosenlanguage");
     document.getElementsByClassName("wait-for-load")[0].style.display = "block";
   });
 })();
+
+{
+  /* <script src="https://cdn.jsdelivr.net/gh/ArtMooney/NJIE@v1.0.7/src/index-language-selector-lowcaly.min.js"></script> */
+}
